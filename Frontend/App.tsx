@@ -7,9 +7,10 @@ import { TouchableOpacity } from 'react-native';
 interface DataItem {
   ID: number;
   TransactionDate: string;
-  Description1: string;
-  Description2: string;
-  Cost: number;
+  Description: string;
+  Amount: number;
+  ExpenseType: string;
+  Category: string;
 }
 
 type SortOrder = 'asc' | 'desc';
@@ -131,22 +132,26 @@ const App: React.FC = () => {
           <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('TransactionDate')}>
             <Text style={styles.tableHeaderText}>Date</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Description1')}>
-            <Text style={styles.tableHeaderText}>Description 1</Text>
+          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Description')}>
+            <Text style={styles.tableHeaderText}>Description</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Description2')}>
-            <Text style={styles.tableHeaderText}>Description 2</Text>
+          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Amount')}>
+            <Text style={styles.tableHeaderText}>Amount</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Cost')}>
-            <Text style={styles.tableHeaderText}>Cost</Text>
+          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('ExpenseType')}>
+            <Text style={styles.tableHeaderText}>ExpenseType</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.tableHeaderCell} onPress={() => handleSort('Category')}>
+            <Text style={styles.tableHeaderText}>Category</Text>
           </TouchableOpacity>
         </View>
         {filteredData.map((item) => (
           <View key={item.ID} style={styles.tableRow}>
             <Text style={styles.tableCell}>{new Date(item.TransactionDate).toLocaleDateString()}</Text>
-            <Text style={styles.tableCell}>{item.Description1}</Text>
-            <Text style={styles.tableCell}>{item.Description2}</Text>
-            <Text style={styles.tableCell}>{item.Cost.toFixed(2)}</Text>
+            <Text style={styles.tableCell}>{item.Description}</Text>
+            <Text style={styles.tableCell}>{item.Amount.toFixed(2)}</Text>
+            <Text style={styles.tableCell}>{item.ExpenseType}</Text>
+            <Text style={styles.tableCell}>{item.Category}</Text>
           </View>
         ))}
       </View>
